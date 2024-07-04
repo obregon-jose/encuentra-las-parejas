@@ -1,7 +1,7 @@
 let iconos = [];
 let selecciones = [];
-let numeroTarjetas = 136; //debe ser un numero PAR
-let tiempo = 60*5;
+let numeroTarjetas = 50; //debe ser un numero PAR
+let tiempo = 0;
 let elementoTime = document.getElementById('time');
 let permitirSeleccion = true;
 
@@ -59,7 +59,7 @@ function ganar(){
 }
 
 function generarTablero() {
-    tiempo = tiempo;
+    tiempo = 0;
     // Inicia el tiempo regresivo CORREGIR
     //iniciarTiempoRegresivo();
 
@@ -126,21 +126,22 @@ function deseleccionar(selecciones) {
 generarTablero()
 
 //////////////////////////////////////////////////////
+iniciarTiempoRegresivo()
 function iniciarTiempoRegresivo() {
     const intervalo = setInterval(function() {
-        tiempo--;
+        tiempo++;
         elementoTime.textContent = formatearTiempo(tiempo);
 
         if (tiempo <= 0) {
             clearInterval(intervalo);
-            perder();
+            //perder();
             // console.log("El tiempo se ha agotado.");
         } else {
-            if (tiempo > 15) {
-                elementoTime.style.color = 'initial';
-            } else {
-                elementoTime.style.color = 'red';
-            }
+            // if (tiempo > 15) {
+            //     elementoTime.style.color = 'initial';
+            // } else {
+            //     elementoTime.style.color = 'red';
+            // }
         }
         
 
