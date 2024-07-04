@@ -9,15 +9,28 @@
 </head>
 
 <body>
+    <!-- <div class="nota-perder">
+        <h2>¡Perdiste!</h2>
+        <p>¡Vuelve a intentarlo!</p>
+    </div>
+    <div class="nota-ganar">
+        <h2>¡Ganaste!</h2>
+        <p>¡Felicidades!</p>
+        <button>Siguiente Nivel</button>
+    </div> -->
+
     <header>
         <h1 class="title">Encuentra las parejas</h1>
         <div class="container">
-            <span id="time" class="time"></span>
+            <span id="time" class="time">00:00</span>
             <div class="nuevo-juego" onclick="generarTablero()">Restablecer tablero</div>
         </div>
     </header>
     <main>
-        <div id="tablero"></div>
+        <div class="nn">
+            <div id="tablero" class="tablero"></div>
+        </div>
+        
     </main>
     <script src="app.js"></script>
 </body>

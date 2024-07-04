@@ -1,10 +1,9 @@
 let iconos = [];
 let selecciones = [];
-let numeroTarjetas = 136;
+let numeroTarjetas = 136; //debe ser un numero PAR
 let tiempo = 60*5;
 let elementoTime = document.getElementById('time');
 let permitirSeleccion = true;
-// Math.floor(Math.random() * iconos.length) + 1
 
 function cargarIconos() {
     iconos = [
@@ -50,29 +49,33 @@ function cargarIconos() {
         '<img width="96" height="96" src="https://img.icons8.com/fluency/96/crab.png" alt="crab"/>',
     ]
 }
-
 function perder(){
     alert("Perdiste \n Reinicia el tablero.")
     permitirSeleccion = false;
 }
 
+function ganar(){
+
+}
+
 function generarTablero() {
     tiempo = tiempo;
-    // Inicia el tiempo regresivo
-    iniciarTiempoRegresivo();
+    // Inicia el tiempo regresivo CORREGIR
+    //iniciarTiempoRegresivo();
 
     cargarIconos()
     selecciones = []
     let tablero = document.getElementById("tablero")
     let tarjetas = []
+
+    let icono = iconos[Math.floor(Math.random() * iconos.length)];
+
     for (let i = 0; i < numeroTarjetas; i++) {
-        const indiceAleatorio = Math.floor(Math.random() * iconos.length);
         tarjetas.push(`
         <div class="area-tarjeta" onclick="seleccionarTarjeta(${i})">
             <div class="tarjeta" id="tarjeta${i}">
                 <div class="cara trasera" id="trasera${i}">
-                   
-                    ${iconos[indiceAleatorio]}
+                    ${icono}
                 </div>
                 <div class="cara superior">
                     <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/help.png" alt="help"/>
@@ -81,13 +84,12 @@ function generarTablero() {
         </div>        
         `)
         if (i % 2 == 1) {
-            // iconos.splice(0, 1)
+            icono = iconos[Math.floor(Math.random() * iconos.length)]
         }
     }
     tarjetas.sort(() => Math.random() - 0.5)
     tablero.innerHTML = tarjetas.join(" ")
 }
-
 
 function seleccionarTarjeta(i) {
     if (!permitirSeleccion) return;
@@ -124,22 +126,15 @@ function deseleccionar(selecciones) {
 generarTablero()
 
 //////////////////////////////////////////////////////
-// Inicializa el tiempo en 120 segundos (2 minutos)
-
-
-// Función para iniciar el tiempo regresivo
 function iniciarTiempoRegresivo() {
-    // Actualiza el tiempo cada segundo
     const intervalo = setInterval(function() {
         tiempo--;
-        // Actualiza el elemento HTML con el nuevo tiempo
         elementoTime.textContent = formatearTiempo(tiempo);
 
-        
         if (tiempo <= 0) {
             clearInterval(intervalo);
-            // Aquí puedes agregar cualquier acción que quieras realizar cuando el tiempo se agote
-            console.log("El tiempo se ha agotado.");
+            perder();
+            // console.log("El tiempo se ha agotado.");
         } else {
             if (tiempo > 15) {
                 elementoTime.style.color = 'initial';
@@ -152,12 +147,8 @@ function iniciarTiempoRegresivo() {
     }, 1000);
 }
 
-// Función para formatear el tiempo en minutos y segundos (sin cambios)
 function formatearTiempo(segundos) {
     const minutos = Math.floor(segundos / 60);
     const segundosRestantes = segundos % 60;
     return `${minutos.toString().padStart(2, '0')}:${segundosRestantes.toString().padStart(2, '0')}`;
 }
-
-
-
