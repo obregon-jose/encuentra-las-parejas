@@ -174,7 +174,7 @@ function pista(){
     //     alert("Ya no tienes pistas disponibles.")
     // }
 }
-
+pista();
 
 
 function mostrarPista() {
