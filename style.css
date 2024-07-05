@@ -38,6 +38,12 @@ main div {
      
 }
 
+.pistas{
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+    /* display: none; */
+}
 
 .nuevo-juego {
     cursor: pointer;
