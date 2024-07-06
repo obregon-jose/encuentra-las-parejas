@@ -121,38 +121,6 @@ function deseleccionar(selecciones) {
         }
     }, 1000);
 }
-
-generarTablero()
-
-//////////////////////////////////////////////////////
-iniciarTiempoRegresivo()
-function iniciarTiempoRegresivo() {
-    const intervalo = setInterval(function() {
-        tiempo++;
-        elementoTime.textContent = formatearTiempo(tiempo);
-
-        if (tiempo <= 0) {
-            clearInterval(intervalo);
-            //perder();
-            // console.log("El tiempo se ha agotado.");
-        } else {
-            // if (tiempo > 15) {
-            //     elementoTime.style.color = 'initial';
-            // } else {
-            //     elementoTime.style.color = 'red';
-            // }
-        }
-        
-
-    }, 1000);
-}
-
-function formatearTiempo(segundos) {
-    const minutos = Math.floor(segundos / 60);
-    const segundosRestantes = segundos % 60;
-    return `${minutos.toString().padStart(2, '0')}:${segundosRestantes.toString().padStart(2, '0')}`;
-}
-
 function pista(){
     let elementoPista = document.getElementById("pistas");
     let pista = [];
@@ -174,9 +142,6 @@ function pista(){
     //     alert("Ya no tienes pistas disponibles.")
     // }
 }
-pista();
-
-
 function mostrarPista() {
     pistasMaximas--;
     pista();
@@ -234,3 +199,34 @@ function mostrarPista() {
         }, 500); // Ajustar el tiempo según sea necesario
     }
 }
+
+function iniciarTiempoRegresivo() {
+    const intervalo = setInterval(function() {
+        tiempo++;
+        elementoTime.textContent = formatearTiempo(tiempo);
+
+        if (tiempo <= 0) {
+            clearInterval(intervalo);
+            //perder();
+            // console.log("El tiempo se ha agotado.");
+        } else {
+            // if (tiempo > 15) {
+            //     elementoTime.style.color = 'initial';
+            // } else {
+            //     elementoTime.style.color = 'red';
+            // }
+        }
+        
+
+    }, 1000);
+}
+
+function formatearTiempo(segundos) {
+    const minutos = Math.floor(segundos / 60);
+    const segundosRestantes = segundos % 60;
+    return `${minutos.toString().padStart(2, '0')}:${segundosRestantes.toString().padStart(2, '0')}`;
+}
+
+generarTablero()
+pista();
+iniciarTiempoRegresivo()

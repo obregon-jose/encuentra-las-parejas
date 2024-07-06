@@ -112,3 +112,32 @@ main div {
     }
 }
 
+
+@media  (max-width: 768px) {
+    :root {
+        --width-tarjeta: calc(65vw / 4); 
+        --height-tarjeta: calc(31vh / 4);
+    }
+    .title {
+        font-size: 28px;
+    }
+    .container {
+        width: 100%; 
+    }
+    .pistas img{
+        width: 25px;
+        height: 25px;
+    }
+
+    
+
+    header {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .nuevo-juego, .time {
+        font-size: 18px;
+    }
+}
+
