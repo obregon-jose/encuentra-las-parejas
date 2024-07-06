@@ -42,7 +42,6 @@ main div {
     cursor: pointer;
     display: flex;
     gap: 5px;
-    /* display: none; */
 }
 
 .nuevo-juego {
@@ -111,9 +110,17 @@ main div {
         transform: rotateY(0deg);
     }
 }
-
-
+/* PENDIENTE */
 @media  (max-width: 768px) {
+    .container {
+        width: 100%; 
+    }
+    .title {
+        font-size: 28px;
+    }
+}
+
+@media  (max-width: 480px) {
     :root {
         --width-tarjeta: calc(65vw / 4); 
         --height-tarjeta: calc(31vh / 4);
@@ -128,9 +135,6 @@ main div {
         width: 25px;
         height: 25px;
     }
-
-    
-
     header {
         flex-direction: column;
         padding: 10px;

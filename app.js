@@ -48,21 +48,19 @@ let iconos = [
     '<img width="96" height="96" src="https://img.icons8.com/fluency/96/prawn.png" alt="prawn"/>',
     '<img width="96" height="96" src="https://img.icons8.com/fluency/96/crab.png" alt="crab"/>',
 ]
-function perder(){
-    alert("Perdiste \n Reinicia el tablero.")
-    permitirSeleccion = false;
-}
+// function perder(){
+//     alert("Perdiste \n Reinicia el tablero.")
+//     permitirSeleccion = false;
+// }
 
-function ganar(){
+// function ganar(){
 
-}
+// }
 
 function generarTablero() {
     tiempo = 0;
     pistasMaximas = 5;
     pista();
-    // Inicia el tiempo regresivo CORREGIR
-    //iniciarTiempoRegresivo();
 
     let tablero = document.getElementById("tablero")
     let tarjetas = []
@@ -100,12 +98,12 @@ function seleccionarTarjeta(i) {
     }
     if (selecciones.length == 2) {
         permitirSeleccion = false;
-        deseleccionar(selecciones);
+        desSeleccionar(selecciones);
         selecciones = [];
     }
 }
 
-function deseleccionar(selecciones) {
+function desSeleccionar(selecciones) {
     setTimeout(() => {
         permitirSeleccion = true;
         let trasera1 = document.getElementById("trasera" + selecciones[0])
@@ -121,10 +119,10 @@ function deseleccionar(selecciones) {
         }
     }, 1000);
 }
+
 function pista(){
     let elementoPista = document.getElementById("pistas");
     let pista = [];
-
     for (let i = 0; i < pistasMaximas; i++) {
         pista.push(`
             <div>
@@ -132,52 +130,25 @@ function pista(){
             </div>     
         `)
     }
-    pista.sort(() => Math.random() - 0.5);
     elementoPista.innerHTML = pista.join(" ");
-
-    // if (pistasMaximas > 0) {
-    //     mostrarPista();
-    //     pistasMaximas--;
-    // } else {
-    //     alert("Ya no tienes pistas disponibles.")
-    // }
 }
+
 function mostrarPista() {
     pistasMaximas--;
     pista();
     let tarjetasIguales = [];
-    let tarjetasRevisadas = [];
 
-    // Buscar tarjetas iguales que no han sido reveladas correctamente
     for (let i = 0; i < numeroTarjetas; i++) {
         for (let j = i + 1; j < numeroTarjetas; j++) {
             let tarjeta1 = document.getElementById("trasera" + i);
             let tarjeta2 = document.getElementById("trasera" + j);
-            if (tarjeta1.innerHTML === tarjeta2.innerHTML 
-                && tarjeta1.style.background !== "skyblue" 
-                && tarjeta2.style.background !== "skyblue" 
-                //&& !tarjetasRevisadas.includes(i) 
-                //&& !tarjetasRevisadas.includes(j)
-            ) {
+            if (tarjeta1.style.background !== "skyblue" && tarjeta2.style.background !== "skyblue") {
                 tarjetasIguales.push([i, j]);
-                tarjetasRevisadas.push(i, j);
-                
-                //break;  //Romper el ciclo interno para evitar duplicados
-
             }
         }
     }
-    // Si se encontraron tarjetas iguales, mostrar una pista
-    if (tarjetasIguales.length > 0) {
-        let indiceAleatorio = Math.floor(Math.random() * tarjetasIguales.length);
-        let pista = tarjetasIguales[indiceAleatorio];
-        let tarjeta1 = document.getElementById("tarjeta" + pista[0]);
-        let tarjeta2 = document.getElementById("tarjeta" + pista[1]);
 
-        // Aplicar efecto visual temporal como pista
-        //tarjeta1.style.transform = "rotateY(180deg)";
-        //tarjeta2.style.transform = "rotateY(180deg)";
-        
+    if (tarjetasIguales.length > 0) {
         for (let i = 0; i < tarjetasIguales.length; i++) {
             let tarjeta1 = document.getElementById("tarjeta" + tarjetasIguales[i][0]);
             let tarjeta2 = document.getElementById("tarjeta" + tarjetasIguales[i][1]);
@@ -185,18 +156,14 @@ function mostrarPista() {
             tarjeta2.style.transform = "rotateY(180deg)";
         }
 
-        // Remover el efecto visual después de un corto período
         setTimeout(() => {
-            //tarjeta1.style.transform = "rotateY(0deg)"
-            //tarjeta2.style.transform = "rotateY(0deg)"
-
             for (let i = 0; i < tarjetasIguales.length; i++) {
                 let tarjeta1 = document.getElementById("tarjeta" + tarjetasIguales[i][0]);
                 let tarjeta2 = document.getElementById("tarjeta" + tarjetasIguales[i][1]);
                 tarjeta1.style.transform = "rotateY(0deg)";
                 tarjeta2.style.transform = "rotateY(0deg)";
             }
-        }, 500); // Ajustar el tiempo según sea necesario
+        }, 1000);
     }
 }
 
